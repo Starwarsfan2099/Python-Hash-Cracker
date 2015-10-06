@@ -1,0 +1,33 @@
+Version 1.0 Beta
+*Basic Hash cracking(only md5)
+
+Version 1.2 Beta
+*Changed to command line arguments
+*Added Information printing
+
+Version 1.3 Beta
+*Added all hashes supported by python
+*Speed up
+*Added -i flag for usage and help
+
+Version 2.0 Beta
+*Error handling
+*Speed boost
+*Added fun Easter egg(I was bored)!
+^(try ./hash.py -t hashbrowns -h hashbrowns -w hashbrowns)^
+*Those who read this are the only ones who know!!!
+*Added help for missing arguments
+
+Version 2.1 Stable
+*Added verbose(-v) flag
+*All errors handled(so now it's stable!)
+
+Version 3.0 Stable
+*Added a numbers-bruteforce option(-n)
+*Created a windows compiled binary gui(.exe)!!!
+*Changed references from readlines() to buf() for a speed boost!!!
+*Now afficialy faster than Cain and Abel- www.oxid.it
+
+TODO
+*Automatically detect hash type
+*Use functions in a custom library to get everything out of one script!
