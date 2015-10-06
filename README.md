@@ -16,7 +16,7 @@ Command line is fairly straight forword, here are the options:
 
 #Examples:
 
-Hashcrack with a worddlist and verbose mode:
+Hashcrack with a wordlist and verbose mode:
 
 ./Hash-Cracker.py -h 7406e17d2e30b05b7220a800fad53a22 -t md5 -w Wordlist.txt -v
 
