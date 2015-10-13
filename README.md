@@ -33,4 +33,7 @@ Options include Numbers bruteforce and about. Help is also right there. You can 
 #Issues with the GUI
 When cracking the main window will freeze. THIS IS NOT BAD. It means it realy is running.There is no way to stop this because python threading will not allow it.
 
+#Platforms
+The command line tool works on iOS, Windows, Unix, and OS X.
+
 #Enjoy
