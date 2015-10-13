@@ -12,9 +12,14 @@ Command line is fairly straight forword, here are the options:
 
 -n [numbers bruteforce, used in place of -w]
 
--v [verbose, slows down cracking time though :(]
+-v [verbose, slows down cracking time though :( ]
+
+-i [help and info]
 
 #Examples:
+Hashcrack help:
+
+./Hash-Cracker.py -i
 
 Hashcrack with a wordlist and verbose mode:
 
