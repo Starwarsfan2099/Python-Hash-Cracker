@@ -1,5 +1,5 @@
 # Python-Hash-Cracker
-Extremely Fast Python Hash Cracker with GUI!!! This tool can try 300,00 words a second!!! It comes in a command line version and a compiled executable windows gui!!!( This tool is faster than Cain www.Oxid.it)
+Extremely Fast Python Hash Cracker with GUI!!! This tool can try 300,000 words a second!!! It comes in a command line version and a compiled executable windows gui!!!( This tool is faster than Cain www.Oxid.it)
 It supportes several hash formats with options like a Numbers Bruteforce and verbose (command line).
 #Usage
 Command line is fairly straight forword, here are the options:
