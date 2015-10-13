@@ -1,5 +1,5 @@
 # Python-Hash-Cracker
-Extremely Fast Python Hash Cracker with GUI!!! This tool can try 300,00 words a second!!! It comes in a command line version and a compiled executable windows gui!!!( This tool is faster than Cain www.Oxid.it)
+Extremely Fast Python Hash Cracker with GUI!!! This tool can try 300,000 words a second!!! It comes in a command line version and a compiled executable windows gui!!!( This tool is faster than Cain www.Oxid.it)
 It supportes several hash formats with options like a Numbers Bruteforce and verbose (command line).
 #Usage
 Command line is fairly straight forword, here are the options:
@@ -12,11 +12,16 @@ Command line is fairly straight forword, here are the options:
 
 -n [numbers bruteforce, used in place of -w]
 
--v [verbose, slows down cracking time though :(]
+-v [verbose, slows down cracking time though :( ]
+
+-i [help and info]
 
 #Examples:
+Hashcrack help:
 
-Hashcrack with a worddlist and verbose mode:
+./Hash-Cracker.py -i
+
+Hashcrack with a wordlist and verbose mode:
 
 ./Hash-Cracker.py -h 7406e17d2e30b05b7220a800fad53a22 -t md5 -w Wordlist.txt -v
 
@@ -32,5 +37,8 @@ Options include Numbers bruteforce and about. Help is also right there. You can 
 
 #Issues with the GUI
 When cracking the main window will freeze. THIS IS NOT BAD. It means it realy is running.There is no way to stop this because python threading will not allow it.
+
+#Platforms
+The command line tool works on iOS, Windows, Unix, and OS X. Gui works on all but iOS.
 
 #Enjoy
