@@ -43,6 +43,3 @@ The command line tool works on iOS, Windows[7/8/10], Unix, and OS X. Gui works o
 
 <<<<<<< HEAD
 #Enjoy
-=======
-#Enjoy
->>>>>>> 893308c0941ad1eff4f05fcc444edcae3751b520
