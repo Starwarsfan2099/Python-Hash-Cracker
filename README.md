@@ -41,4 +41,8 @@ When cracking the main window will freeze. THIS IS NOT BAD. It means it realy is
 #Platforms
 The command line tool works on iOS, Windows, Unix, and OS X. Gui works on all but iOS.
 
+<<<<<<< HEAD
 #Enjoy
+=======
+#Enjoy
+>>>>>>> 893308c0941ad1eff4f05fcc444edcae3751b520
