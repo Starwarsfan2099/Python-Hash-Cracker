@@ -87,7 +87,7 @@ class hash:
        if (ver == "yes"):
            sys.stdout.write('\r' + str(line) + ' ' * 20)
            sys.stdout.flush()
-       if (hash2 == hash1):
+       if (hash2 == hash.lower()):
            print "[+]Hash is: %s" % line
            print "[*]Words tryed: %s" % self.num
            break
@@ -112,19 +112,18 @@ class hash:
     else:
        print "[-]Is %s a supported hash type?" % type
        exit()
-    num2 = 0
     while True:
-       num2 = num2 + 1
-       line = "%s" % num2
-       hash2 = h(line).hexdigest()
+       line = "%s" % self.num
+       line.strip()
+       hash2 = h(line).hexdigest().strip()
        if (ver == "yes"):
            sys.stdout.write('\r' + str(line) + ' ' * 20)
            sys.stdout.flush()
-       if (hash2 == hash1):
+       if (hash2.strip() == hash.strip().lower()):
            print "[+]Hash is: %s" % line
            break
        else:
-           self.num = self.num + 1
+         self.num = self.num + 1
 
 def main(argv):
   what = check_os()
