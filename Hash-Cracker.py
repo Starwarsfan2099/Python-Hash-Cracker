@@ -6,7 +6,7 @@ import sys
 import os
 print "  "
 print "Python Hash-Cracker"
-print "Version 3.0-1 Stable"
+print "Version 3.0-2 Stable"
 more = "config/add.txt"
 
 def info():
