@@ -31,15 +31,6 @@ Numbers bruteforce fast:
 
 ./Hash-Cracker.py -h 7406e17d2e30b05b7220a800fad53a22 -t md5 -n
 
-#Gui
-![Alt text](img.JPG?raw=true "Screenshot")
-
-Select File:Import than 'Hash' or 'Hash from file', than under Import, import a wordlist. Select the hash type and hit crack.
-Options include Numbers bruteforce and about. Help is also right there. You can also export the hash, word, and info to a file once it has been cracked.
-
-#Issues with the GUI
-When cracking the main window will freeze. THIS IS NOT BAD. It means it realy is running.There is no way to stop this because python threading will not allow it.
-
 #Platforms
 The command line tool works on iOS, Windows[7/8/10], Unix, and OS X. Gui works on all but iOS.
 
