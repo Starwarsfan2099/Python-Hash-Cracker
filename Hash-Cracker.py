@@ -12,47 +12,25 @@ more = "config/add.txt"
 def info():
   print " "
   print "Information:"
-  print "[*]Options:"
+  print "[*] Options:"
   print "[*](-h) Hash"
   print "[*](-t) Type [See supported hashes]"
   print "[*](-w) Wordlist"
   print "[*](-n) Numbers bruteforce"
-  print "[*](-v) Verbose [{WARNING}Slows cracking down!]"
-  print "[*]Examples:"
-  print "[>]./Hash-Cracker.py -h <hash> -t md5 -w DICT.txt"
-  print "[>]./Hash-Cracker.py -h <hash> -t sha384 -n -v"
-  print "[*]Supported Hashes:"
-  print "[>]md5, sha1, sha224, sha256, sha384, sha512"
-  print "[*]Thats all folks!\n"
+  print "[*](-v) Verbose [{WARNING}Slows cracking down!]\n"
+  print "[*] Examples:"
+  print "[>] ./Hash-Cracker.py -h <hash> -t md5 -w DICT.txt"
+  print "[>] ./Hash-Cracker.py -h <hash> -t sha384 -n -v"
+  print "[*] Supported Hashes:"
+  print "[>] md5, sha1, sha224, sha256, sha384, sha512"
+  print "[*] Thats all folks!\n"
 
 def check_os():
     if os.name == "nt":
-        operating_system = "windows"
+        operating_system = "Windows"
     if os.name == "posix":
         operating_system = "posix"
     return operating_system
-
-def definepath():
-    if check_os() == "posix":
-        if os.path.isfile("fake-update"):
-            return os.getcwd()
-        else:
-            return "/opt/Hermies"
-    else:
-        return os.getcwd() 
-
-def check_config(param):
-    fileopen = file("%s/config/config.txt" % (definepath()), "r")
-    for line in fileopen:
-        line=line.rstrip()
-        #print line
-        if line.startswith(param) != "#":
-           if line.startswith(param):
-                line = line.rstrip()
-                line = line.replace('"', "")
-                line = line.replace("'", "")
-                line = line.split("=")
-                return line[1]
 
 class hash:
   def hashcrack(self, hash, type):
