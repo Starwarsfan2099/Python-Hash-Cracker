@@ -26,7 +26,6 @@ Version 3.0 Stable
 *Added a numbers-bruteforce option(-n)
 *Created a windows compiled binary gui(.exe)!!!
 *Changed references from readlines() to buf() for a speed boost!!!
-*Now afficialy faster than Cain and Abel- www.oxid.it
 
 TODO
 *Automatically detect hash type
