@@ -4,9 +4,10 @@ import getopt
 import hashlib
 import sys
 import os
+import time
 print "  "
 print "Python Hash-Cracker"
-print "Version 3.0-2 Stable"
+print "Version 3.0-3 Stable"
 more = "config/add.txt"
 
 def info():
@@ -32,8 +33,28 @@ def check_os():
         operating_system = "posix"
     return operating_system
 
+def file_len(fname, verbose):
+    try:
+      with open(fname, "rU") as f:
+          for i, l in enumerate(f):
+            if (verbose == "yes"):
+              line = "[*]Loaded %s lines..." % i
+              sys.stdout.write('\r' + str(line) + ' ' * 20)
+              sys.stdout.flush()
+            pass
+    except IOError:
+        print "\n[-]Couldn't find wordlist"
+        print "[*]Is this right?"
+        print "[>]%s" % wordlist
+        exit()
+    return i + 1
+
+def format_wordlist(wordlist):
+  return wordlist
+
 class hash:
   def hashcrack(self, hash, type):
+    start = time.time()
     self.num = 0
     if (type == "md5"):
        h = hashlib.md5
@@ -50,30 +71,30 @@ class hash:
     else:
        print "[-]Is %s a supported hash type?" % type
        exit()
-    wordlist1 = open(wordlist, "r")
-    wordlist2 = wordlist1.read()
-    buf = StringIO.StringIO(wordlist2)
-    while True:
-       line = buf.readline().strip()
-       if (line == ""):
-           print "\n[-]Hash not cracked:"
-           print "[*]Reached end of wordlist"
-           print "[*]Try another wordlist"
-           print "[*]Words tryed: %s" % self.num
-           break
-       hash2 = h(line).hexdigest()
-       if (ver == "yes"):
-           sys.stdout.write('\r' + str(line) + ' ' * 20)
-           sys.stdout.flush()
-       if (hash2 == hash.lower()):
-           print "[+]Hash is: %s" % line
-           print "[*]Words tryed: %s" % self.num
-           break
-       else:
-           self.num = self.num + 1
-
+    with open(wordlist, "rU") as infile:
+      for line in infile:
+        line = line.strip()
+        hash2 = h(line).hexdigest()
+        if (ver == "yes"):
+            sys.stdout.write('\r' + str(line) + ' ' * 20)
+            sys.stdout.flush()
+        if (hash2 == hash.lower()):
+            end = time.time()
+            print "\n[+]Hash is: %s" % line
+            print "[*]Words tried: %s" % self.num
+            print "[*]Time: %s seconds" % round((end-start), 2)
+            exit()
+        else:
+            self.num = self.num + 1
+    end = time.time()
+    print "\n[-]Cracking Failed"
+    print "[*]Reached end of wordlist"
+    print "[*]Words tried: %s" % self.num
+    print "[*]Time: %s seconds" % round((end-start), 2)
+    exit()
 
   def hashcracknum(self, hash, type):
+    start = time.time()
     self.num = 0
     if (type == "md5"):
        h = hashlib.md5
@@ -98,7 +119,9 @@ class hash:
            sys.stdout.write('\r' + str(line) + ' ' * 20)
            sys.stdout.flush()
        if (hash2.strip() == hash.strip().lower()):
-           print "[+]Hash is: %s" % line
+           end = time.time()
+           print "\n[+]Hash is: %s" % line
+           print "[*]Time: %s seconds" % round((end-start), 2)
            break
        else:
          self.num = self.num + 1
@@ -161,10 +184,10 @@ def main(argv):
         print "\n[-]Hash not cracked:"
         print "[*]Reached end of wordlist"
         print "[*]Try another wordlist"
-        print "[*]Words tryed: %s" % h.num
+        print "[*]Words tried: %s" % h.num
   except KeyboardInterrupt:
         print "\n[Exiting...]"
-        print "Words tryed: %s" % h.num
+        print "Words tried: %s" % h.num
   except IOError:
         print "\n[-]Couldn't find wordlist"
         print "[*]Is this right?"
