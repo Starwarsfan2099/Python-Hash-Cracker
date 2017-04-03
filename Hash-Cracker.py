@@ -8,7 +8,7 @@ import time
 print "  "
 print "Python Hash-Cracker"
 print "Version 3.0-3 Stable"
-more = "config/add.txt"
+
 
 def info():
   print " "
@@ -25,117 +25,96 @@ def info():
   print "[*] Supported Hashes:"
   print "[>] md5, sha1, sha224, sha256, sha384, sha512"
   print "[*] Thats all folks!\n"
+  
 
-def check_os():
+def checkOS():
     if os.name == "nt":
-        operating_system = "Windows"
-    if os.name == "posix":
-        operating_system = "posix"
-    return operating_system
+        operatingSystem = "Windows"
+    elif os.name == "posix":
+        operatingSystem = "posix"
+    else:
+        operatingSystem = "Unknown"
+    return operatingSystem
 
-def file_len(fname, verbose):
-    try:
-      with open(fname, "rU") as f:
-          for i, l in enumerate(f):
-            if (verbose == "yes"):
-              line = "[*]Loaded %s lines..." % i
-              sys.stdout.write('\r' + str(line) + ' ' * 20)
-              sys.stdout.flush()
-            pass
-    except IOError:
-        print "\n[-]Couldn't find wordlist"
-        print "[*]Is this right?"
-        print "[>]%s" % wordlist
-        exit()
-    return i + 1
 
-def format_wordlist(wordlist):
-  return wordlist
-
-class hash:
-  def hashcrack(self, hash, type):
+class hashCracking:
+  
+  def hashCrackWordlist(self, userHash, hashType, wordlist, verbose):
     start = time.time()
-    self.num = 0
-    if (type == "md5"):
+    self.lineCount = 0
+    if (hashType == "md5"):
        h = hashlib.md5
-    elif (type == "sha1"):
+    elif (hashType == "sha1"):
        h = hashlib.sha1
-    elif (type == "sha224"):
+    elif (hashType == "sha224"):
        h = hashlib.sha224
-    elif (type == "sha256"):
+    elif (hashType == "sha256"):
        h = hashlib.sha256
-    elif (type == "sha384"):
+    elif (hashType == "sha384"):
        h = hashlib.sha384
-    elif (type == "sha512"):
+    elif (hashType == "sha512"):
        h = hashlib.sha512
     else:
-       print "[-]Is %s a supported hash type?" % type
+       print "[-]Is %s a supported hash type?" % hashType
        exit()
     with open(wordlist, "rU") as infile:
       for line in infile:
         line = line.strip()
-        hash2 = h(line).hexdigest()
-        if (ver == "yes"):
+        lineHash = h(line).hexdigest()
+        if (verbose == True):
             sys.stdout.write('\r' + str(line) + ' ' * 20)
             sys.stdout.flush()
-        if (hash2 == hash.lower()):
+        if (lineHash == userHash.lower()):
             end = time.time()
-            print "\n[+]Hash is: %s" % line
-            print "[*]Words tried: %s" % self.num
+            print "\n[+]Hash is: %s" % lineHash
+            print "[*]Words tried: %s" % self.lineCount
             print "[*]Time: %s seconds" % round((end-start), 2)
             exit()
         else:
-            self.num = self.num + 1
+            self.lineCount = self.lineCount + 1
     end = time.time()
     print "\n[-]Cracking Failed"
     print "[*]Reached end of wordlist"
-    print "[*]Words tried: %s" % self.num
+    print "[*]Words tried: %s" % self.lineCount
     print "[*]Time: %s seconds" % round((end-start), 2)
     exit()
 
-  def hashcracknum(self, hash, type):
+  def hashCrackNumberBruteforce(self, userHash, hashType, verbose):
     start = time.time()
-    self.num = 0
-    if (type == "md5"):
+    self.lineCount = 0
+    if (hashType == "md5"):
        h = hashlib.md5
-    elif (type == "sha1"):
+    elif (hashType == "sha1"):
        h = hashlib.sha1
-    elif (type == "sha224"):
+    elif (hashType == "sha224"):
        h = hashlib.sha224
-    elif (type == "sha256"):
+    elif (hashType == "sha256"):
        h = hashlib.sha256
-    elif (type == "sha384"):
+    elif (hashType == "sha384"):
        h = hashlib.sha384
-    elif (type == "sha512"):
+    elif (hashType == "sha512"):
        h = hashlib.sha512
     else:
-       print "[-]Is %s a supported hash type?" % type
+       print "[-]Is %s a supported hash type?" % hashType
        exit()
     while True:
-       line = "%s" % self.num
+       line = "%s" % self.lineCount
        line.strip()
-       hash2 = h(line).hexdigest().strip()
-       if (ver == "yes"):
+       numberHash = h(line).hexdigest().strip()
+       if (verbose == True):
            sys.stdout.write('\r' + str(line) + ' ' * 20)
            sys.stdout.flush()
-       if (hash2.strip() == hash.strip().lower()):
+       if (numberHash.strip() == userHash.strip().lower()):
            end = time.time()
-           print "\n[+]Hash is: %s" % line
+           print "\n[+]Hash is: %s" % lineCount
            print "[*]Time: %s seconds" % round((end-start), 2)
            break
        else:
-         self.num = self.num + 1
+         self.lineCount = self.lineCount + 1
 
 def main(argv):
-  what = check_os()
-  print "[Running on %s]\n" % what
-  global hash1, type, wordlist, line, ver, numbrute
-  hash1 = None
-  type = None
-  wordlist = None
-  line = None
-  ver = None
-  numbrute = None
+  hashType = userHash = wordlist = verbose = numbersBruteforce = None
+  print "[Running on %s]\n" % checkOS()
   try:
       opts, args = getopt.getopt(argv,"ih:t:w:nv",["ifile=","ofile="])
   except getopt.GetoptError:
@@ -147,50 +126,43 @@ def main(argv):
           info()
           sys.exit()
       elif opt in ("-t", "--type"):
-          type = arg
+          hashType = arg
       elif opt in ("-h", "--hash"):
-          hash1 = arg
+          userHash = arg
       elif opt in ("-w", "--wordlist"):
           wordlist = arg
       elif opt in ("-v", "--verbose"):
-          ver = "yes"
+          verbose = True
       elif opt in ("-n", "--numbers"):
-          numbrute = "yes"
-  if not (type and hash1):
+          numbersBruteforce = True
+  if not (hashType and userHash):
       print '[*]./Hash-Cracker.py -t <type> -h <hash> -w <wordlist>'
       sys.exit()
-  if (type == "hashbrowns"):
-      if (hash1 == "hashbrowns"):
-          if (wordlist == "hashbrowns"):
-              print "     ______"
-              print "^. .^      \~"
-              print " (oo)______/"
-              print "   WW  WW"
-              print " What a pig!!! "
-              exit()
-  print "[*]Hash: %s" % hash1
-  print "[*]Hash type: %s" % type
+  print "[*]Hash: %s" % userHash
+  print "[*]Hash type: %s" % hashType
   print "[*]Wordlist: %s" % wordlist
   print "[+]Cracking..."
   try:
-      if (numbrute == "yes"):
-         h = hash()
-         h.hashcracknum(hash1, type)
+      h = hashCracking()
+      if (numbersBruteforce == True):
+         h.hashCrackNumberBruteforce(userHash, hashType, verbose)
       else:
-         h = hash()
-         h.hashcrack(hash1, type)
+         h.hashCrackWordlist(userHash, hashType, wordlist, verbose)
 
   except IndexError:
         print "\n[-]Hash not cracked:"
         print "[*]Reached end of wordlist"
         print "[*]Try another wordlist"
-        print "[*]Words tried: %s" % h.num
+        print "[*]Words tried: %s" % h.lineCount
+        
   except KeyboardInterrupt:
         print "\n[Exiting...]"
-        print "Words tried: %s" % h.num
+        print "Words tried: %s" % h.lineCount
+        
   except IOError:
         print "\n[-]Couldn't find wordlist"
         print "[*]Is this right?"
         print "[>]%s" % wordlist
+        
 if __name__ == "__main__":
     main(sys.argv[1:])
