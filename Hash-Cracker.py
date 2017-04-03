@@ -66,7 +66,7 @@ class hashCracking:
             sys.stdout.flush()
         if (lineHash == userHash.lower()):
             end = time.time()
-            print "\n[+]Hash is: %s" % lineHash
+            print "\n[+]Hash is: %s" % line
             print "[*]Words tried: %s" % self.lineCount
             print "[*]Time: %s seconds" % round((end-start), 2)
             exit()
