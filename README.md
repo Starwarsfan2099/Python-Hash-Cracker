@@ -1,7 +1,7 @@
 # Python-Hash-Cracker
 Extremely Fast Python Hash Cracker! This script can try 300,000 words a second.
 It supportes several hash formats with options like a `numbers bruteforce` and `verbose mode`.
-#Usage
+
 ![Alt text](img2.JPG?raw=true "Screenshot")
 
 Command line is fairly straight forword, here are the options:
