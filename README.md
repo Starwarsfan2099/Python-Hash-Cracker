@@ -32,6 +32,6 @@ Numbers bruteforce fast:
 `./Hash-Cracker.py -h 7406e17d2e30b05b7220a800fad53a22 -t md5 -n`
 
 # Platforms
-The command line tool works on iOS, Windows[7/8/10], Unix, and OS X.
+The command line tool has been tested on and works with iOS, Windows[7/8/10], Unix, and OS X.
 
 # Enjoy
