@@ -39,7 +39,7 @@ def checkOS():
 
 
 class hashCracking:
-    
+
     def hashCrackWordlist(self, userHash, hashType, wordlist, verbose):
         start = time.time()
         self.lineCount = 0
@@ -149,12 +149,22 @@ def main(argv):
         sys.exit()
 
     # looks through saved hash file instead of hashing all WordList entries
+    try:
+        File = open('SavedHashes.txt', 'r')
+        File.close()
+    except:
+        File = open('SavedHashes.txt', 'w')
+        File.close()
+
     with open('SavedHashes.txt', 'rU') as SavedHashFile:
         for HASH in SavedHashFile:
             HASH = HASH.strip().split(" : ")
-            if userHash.lower() == HASH[1]:
-                print "[*]Saved Hash is: %s" % HASH[0]
-                sys.exit()
+            try:
+                if userHash.lower() == HASH[1]:
+                    print "[*]Saved Hash is: %s" % HASH[0]
+                    sys.exit()
+            except IndexError:
+                continue
         else:
             print "[*]Hash: %s" % userHash
             print "[*]Hash type: %s" % hashType
