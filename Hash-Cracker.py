@@ -149,7 +149,7 @@ def main(argv):
         sys.exit()
 
     # looks through saved hash file instead of hashing all WordList entries
-    with open('SavedHashes.txt', 'rU') as SavedHashFile:
+    with open('SavedHashes.txt', 'w+') as SavedHashFile:
         for HASH in SavedHashFile:
             HASH = HASH.strip().split(" : ")
             if userHash.lower() == HASH[1]:
