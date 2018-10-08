@@ -24,13 +24,16 @@ Version 2.1 Stable
 
 Version 3.0 Stable
 *Added a numbers-bruteforce option(-n)
-*Created a windows compiled binary gui(.exe)!!!
 *Changed references from readlines() to buf() for a speed boost!!!
 
 Version 3.0-3
 *Fixed wordlist import errors
 *Added support for different file types
 *Now supports extremly large wordlists being loaded (10+ GB)
+
+Version 3.0-4
+*Fixed file operator error
+*Now keeps a  record of cracked hashes to check
 
 TODO
 *Automatically detect hash type
