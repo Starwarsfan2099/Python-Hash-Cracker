@@ -8,7 +8,7 @@ import time
 
 print "  "
 print "Python Hash-Cracker"
-print "Version 3.0-3 Stable"
+print "Version 3.0-4 Stable"
 
 
 def info():
