@@ -1,6 +1,5 @@
 # Python-Hash-Cracker
-Fast Python Hash Cracker! This script can try 600,000 words a second on my base laptop.
-It supportes several hash formats with options like a `numbers bruteforce` and `verbose mode`.
+Python hash cracker built for learning purposes. It supportes several hash formats with options like a `numbers bruteforce` and `verbose mode`.
 
 ![Alt text](img2.JPG?raw=true "Screenshot")
 
@@ -33,5 +32,8 @@ Numbers bruteforce fast:
 
 # Platforms
 The command line tool has been tested on and works with iOS, Windows[7/8/10], Unix, and OS X.
+
+# Support
+`Hash-Cracker.py` supports Python 2.7 and `Hash-Cracker-3.py` supports Python 3.
 
 # Enjoy
