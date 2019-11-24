@@ -39,7 +39,19 @@ def checkOS():
 
 
 class hashCracking:
-    
+
+    def saveToFile(self, hash, key):
+        solved = False
+        savedHashFile = open('SavedHashes.txt', 'a+')
+        for solvedHash in savedHashFile:
+            if hash in solvedHash.split(":")[1].strip():
+                solved = True
+        if solved is False:
+            print "[*] Hash to SavedHashes.txt"
+            savedHashFile.write('%s:{}'.format(hash) % key)
+            savedHashFile.write('\n')
+        savedHashFile.close()
+
     def hashCrackWordlist(self, userHash, hashType, wordlist, verbose, bruteForce=False):
         start = time.time()
         solved = False
@@ -71,15 +83,7 @@ class hashCracking:
                     end = time.time()
                     print "\n[+] Hash is: %s" % self.lineCount
                     print "[*] Time: %s seconds" % round((end - start), 2)
-                    savedHashFile = open('SavedHashes.txt', 'a+')
-                    for solvedHash in savedHashFile:
-                        if numberHash in solvedHash.split(":")[1].strip():
-                            solved = True
-                    if solved is False:
-                        print "[*] Hash to SavedHashes.txt"
-                        savedHashFile.write('%s:{}'.format(numberHash) % line)
-                        savedHashFile.write('\n')
-                    savedHashFile.close()
+                    self.saveToFile(numberHash, line)
                     exit()
                 else:
                     self.lineCount = self.lineCount + 1
@@ -97,15 +101,7 @@ class hashCracking:
                         print "\n[+] Hash is: %s" % line
                         print "[*] Words tried: %s" % self.lineCount
                         print "[*] Time: %s seconds" % round((end - start), 2)
-                        savedHashFile = open('SavedHashes.txt', 'a+')
-                        for solvedHash in savedHashFile:
-                             if lineHash in solvedHash.split(":")[1].strip():
-                                solved = True
-                        if solved is False:
-                            print "[*] Hash to SavedHashes.txt"
-                            savedHashFile.write('%s:{}'.format(lineHash) % line)
-                            savedHashFile.write('\n')
-                        savedHashFile.close()
+                        self.saveToFile(lineHash, line)
                         exit()
                     else:
                         self.lineCount = self.lineCount + 1
