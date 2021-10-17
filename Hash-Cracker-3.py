@@ -87,7 +87,8 @@ class hashCracking:
             with open(wordlist, "r") as infile:
                 for line in infile:
                     line = line.strip()
-                    lineHash = h(line).hexdigest()
+                    encodeline= str.encode(line)
+                    lineHash = h(encodeline).hexdigest()
                     if verbose is True:
                         sys.stdout.write('\r' + str(line) + ' ' * 20)
                         sys.stdout.flush()
